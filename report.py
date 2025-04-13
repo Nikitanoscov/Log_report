@@ -46,6 +46,7 @@ class HandlersReportGenerator:
             totals_row
         ])
 
+
 class SecurityReportGenerator:
     def generate(self, data: List[Dict]) -> str:
         stats: Dict = defaultdict(int)

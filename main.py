@@ -1,9 +1,8 @@
 import argparse
 from concurrent.futures import ThreadPoolExecutor
 import os
-
 import sys
-from typing import Dict, List, Optional, Type
+from typing import Dict, List
 
 from parser import ErrorLogParser, LogParser, RequestLogParser, SecurityLogParser
 from report import HandlersReportGenerator, ReportGenerator, SecurityReportGenerator
@@ -12,9 +11,8 @@ from report import HandlersReportGenerator, ReportGenerator, SecurityReportGener
 BUFFER_SIZE = 1024*1024
 
 
-
-
 class ReportFactory:
+
     _parsers = {
         'handlers': RequestLogParser,
         'security': SecurityLogParser,
@@ -28,15 +26,16 @@ class ReportFactory:
     }
     
     @classmethod
-    def get_parser(cls, report_type: str) -> Optional[Type['LogParser']]:
+    def get_parser(cls, report_type: str) -> type[LogParser] | None:
         return cls._parsers.get(report_type)
     
     @classmethod
-    def get_generator(cls, report_type: str) -> ReportGenerator:
+    def get_generator(cls, report_type: str) -> ReportGenerator | None:
         return cls._generators.get(report_type)
 
 
 class LogAnalyzer:
+
     def __init__(self):
         self.factory = ReportFactory()
 

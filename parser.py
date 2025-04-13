@@ -2,6 +2,7 @@ from abc import abstractmethod
 import re
 from typing import Dict, Protocol
 
+
 class LogParser(Protocol):
     @staticmethod
     @abstractmethod
@@ -44,6 +45,7 @@ class SecurityLogParser:
             'level': match.group('level').upper(),
             'message': match.group('message')
         } if match else None
+
 
 class ErrorLogParser:
     @staticmethod

@@ -10,7 +10,8 @@ class ReportGenerator(Protocol):
         pass
 
 
-class HandlersReportGenerator:
+class HandlersReportGenerator(ReportGenerator):
+    
     def generate(self, data: List[Dict]) -> str:
         stats: DefaultDict[str, DefaultDict[str, int]] = defaultdict(lambda: defaultdict(int))
         total_request = len(data)

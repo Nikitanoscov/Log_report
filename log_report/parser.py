@@ -6,11 +6,11 @@ from typing import Dict, Protocol
 class LogParser(Protocol):
     @staticmethod
     @abstractmethod
-    def parse_line(line: str) -> Dict:
+    def parse_line(line: str) -> Dict | None:
         pass
 
 
-class RequestLogParser:
+class RequestLogParser(LogParser):
     @staticmethod
     def parse_line(line: str) -> Dict | None:
         pattern = (
@@ -30,19 +30,4 @@ class RequestLogParser:
             "handler": match.group("handler")
         }
 
-
-class SecurityLogParser:
-    @staticmethod
-    def parse_line(line: str) -> Dict | None:
-        match = re.match(
-            r'^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d{3}\s+'
-            r'(?P<level>\w+)\s+'
-            r'django\.security:\s+'
-            r'(?P<message>.*)$',
-            line
-        )
-        return {
-            'level': match.group('level').upper(),
-            'message': match.group('message')
-        } if match else None
 

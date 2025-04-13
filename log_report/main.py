@@ -4,7 +4,7 @@ import os
 import sys
 from typing import Dict, List
 
-from parser import LogParser, RequestLogParser, SecurityLogParser
+from parser import LogParser, RequestLogParser
 from report import HandlersReportGenerator, ReportGenerator
 
 

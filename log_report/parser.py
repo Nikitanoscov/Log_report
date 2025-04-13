@@ -46,19 +46,3 @@ class SecurityLogParser:
             'message': match.group('message')
         } if match else None
 
-
-class ErrorLogParser:
-    @staticmethod
-    def parse_line(line: str) -> Dict | None:
-        match = re.match(
-            r'^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d{3}\s+'
-            r'(ERROR|CRITICAL)\s+'
-            r'(?P<source>[\w\.]+):\s+'
-            r'(?P<message>.*)$',
-            line
-        )
-        return {
-            'source': match.group('source'),
-            'level': match.group(1).upper(),
-            'message': match.group('message')
-        } if match else None

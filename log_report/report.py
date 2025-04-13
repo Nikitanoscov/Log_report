@@ -45,22 +45,3 @@ class HandlersReportGenerator:
             *rows,
             totals_row
         ])
-
-
-class SecurityReportGenerator:
-    def generate(self, data: List[Dict]) -> str:
-        stats: Dict = defaultdict(int)
-        for entry in data:
-            stats[entry['level']] += 1
-        
-        report = [
-            "SECURITY EVENTS REPORT\n",
-            "Level".ljust(15) + "Count".ljust(10),
-            "-" * 25
-        ]
-        
-        report.extend(f"{level.ljust(15)}{str(count).ljust(10)}" for level, count in sorted(stats.items()))
-        report.append("\nLast 5 events:")
-        report.extend(f"{entry['level']}: {entry['message']}" for entry in data[-5:])
-        
-        return "\n".join(report)

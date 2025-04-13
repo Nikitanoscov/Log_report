@@ -4,8 +4,8 @@ import os
 import sys
 from typing import Dict, List
 
-from parser import ErrorLogParser, LogParser, RequestLogParser, SecurityLogParser
-from report import HandlersReportGenerator, ReportGenerator, SecurityReportGenerator
+from parser import LogParser, RequestLogParser, SecurityLogParser
+from report import HandlersReportGenerator, ReportGenerator
 
 
 BUFFER_SIZE = 1024*1024
@@ -15,14 +15,10 @@ class ReportFactory:
 
     _parsers = {
         'handlers': RequestLogParser,
-        'security': SecurityLogParser,
-        'errors': ErrorLogParser
     }
     
     _generators = {
         'handlers': HandlersReportGenerator(),
-        'security': SecurityReportGenerator(),
-        'errors': SecurityReportGenerator()
     }
     
     @classmethod
@@ -72,7 +68,7 @@ class LogAnalyzer:
 def main():
     parser = argparse.ArgumentParser(description='Django Log Analyzer')
     parser.add_argument('log_files', nargs='+', help='Log files to analyze')
-    parser.add_argument('--report', choices=['handlers', 'security', 'errors'], 
+    parser.add_argument('--report', choices=['handlers'], 
                        default='handlers', help='Report type')
     
     args = parser.parse_args()

@@ -69,3 +69,5 @@ class ReportFactory:
   ```
   python main.py file.log --report handlers
   ```
+
+![Результат](https://github.com/Nikitanoscov/Log_report/blob/main/images/Work_result.png)

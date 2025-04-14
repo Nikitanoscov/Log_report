@@ -66,10 +66,18 @@ class LogAnalyzer:
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Django Log Analyzer')
-    parser.add_argument('log_files', nargs='+', help='Log files to analyze')
-    parser.add_argument('--report', choices=['handlers'], 
-                       default='handlers', help='Report type')
+    parser = argparse.ArgumentParser(description='Анализ логов django')
+    parser.add_argument(
+        'log_files',
+        nargs='+',
+        help='Файлы с логами для анализа'
+    )
+    parser.add_argument(
+        '--report',
+        choices=['handlers'], 
+        default='handlers',
+        help='Тип отчета'
+    )
     
     args = parser.parse_args()
     args.log_files = set(args.log_files)

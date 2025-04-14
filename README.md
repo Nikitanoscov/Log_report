@@ -6,6 +6,19 @@
 
   python main.py <путь к файлу или нескольким файлам> --report <Название отчета>
 
+    
+## Создание отчета
+  ```
+  cd log_report/
+  ```
+
+  ```
+  python main.py file.log --report handlers
+  ```
+
+![Результат](https://github.com/Nikitanoscov/Log_report/blob/main/images/Work_result.png)
+
+
 ## Добавление новых отчетов
 
   Для создания нового отчета:     
@@ -60,14 +73,3 @@ class ReportFactory:
     def get_generator(cls, report_type: str) -> ReportGenerator | None:
         return cls._generators.get(report_type)
 ```
-    
-## Создание отчета
-  ```
-  cd log_report/
-  ```
-
-  ```
-  python main.py file.log --report handlers
-  ```
-
-![Результат](https://github.com/Nikitanoscov/Log_report/blob/main/images/Work_result.png)
